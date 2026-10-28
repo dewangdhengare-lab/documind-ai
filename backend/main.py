@@ -35,15 +35,6 @@ async def lifespan(app: FastAPI):
     logger.info("Initializing DocuMind AI database...")
     init_db()
     logger.info("Database initialized successfully.")
-
-    # Warm up local embedding model so subsequent uploads process in <1s
-    try:
-        from services.embedding_service import _get_model
-        _get_model()
-        logger.info("Embedding model loaded and ready.")
-    except Exception as e:
-        logger.warning("Could not pre-load embedding model: %s", e)
-
     yield
     logger.info("Shutting down DocuMind AI backend...")
 
