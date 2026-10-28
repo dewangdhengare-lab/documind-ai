@@ -17,4 +17,4 @@ COPY . .
 
 EXPOSE 8008
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8008"]
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8008}"]
